@@ -3,23 +3,31 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { useState } from "react";
 import App from "./App";
-import topics from "./DumbQs.csv";
+import TOPICS from "./DumbQs.csv";
 import reportWebVitals from "./reportWebVitals";
 
 function HelloWorld() {
-  console.log(topics);
+  console.log("TOPICS =:", TOPICS);
+  const reader = new FileReader();
   const [text, setText] = useState();
 
   const load = function () {
     fetch("./DumbQs.csv")
       .then((response) => {
-        console.log(response);
+        console.log("r", response);
         response.text();
       })
-      .then((responseText) => {
-        setText(responseText);
-        console.log(responseText);
-      });
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error));
+    // fetch("./DumbQs.csv")
+    //   .then((response) => {
+    //     return response.text();
+    //   })
+    //   .then((responseText) => {
+    //     console.log("responseText", responseText);
+
+    //     setText(responseText);
+    // });
   };
 
   return (
